@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
@@ -30,7 +29,7 @@ import static com.jeeconf.hibernate.performancetuning.sqltracker.QueryCountInfoH
         DependencyInjectionTestExecutionListener.class,
         DbUnitTestExecutionListener.class
 })
-@IfProfileValue(name = "run-tests", value = "true")
+//@IfProfileValue(name = "run-tests", value = "true")
 @Transactional
 public abstract class BaseTest {
 
@@ -39,6 +38,8 @@ public abstract class BaseTest {
             "*************** DATABASE HAS BEEN ALREADY SET UP ***************",
             "****************************************************************"
     };
+    @PersistenceContext
+    protected EntityManager em;
 
     @Before
     public void dbAllSet() {
@@ -52,9 +53,6 @@ public abstract class BaseTest {
     public void showSqlCount() {
         System.out.printf("\nSql count: " + getQueryInfo().countAll());
     }
-
-    @PersistenceContext
-    protected EntityManager em;
 
     protected Session getSession() {
         return em.unwrap(Session.class);

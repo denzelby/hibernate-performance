@@ -39,7 +39,7 @@ public class DirtyCheckingTest extends BaseTest {
     public void statelessSession() {
         SessionFactory sf = getSession().getSessionFactory();
         StatelessSession statelessSession = sf.openStatelessSession();
-        ScrollableResults scroll = statelessSession.createQuery("select c from Client c")
+        ScrollableResults scroll = statelessSession.createQuery("select c from com.jeeconf.hibernate.performancetuning.dirtychecking.entity.Client c")
                 .scroll(ScrollMode.FORWARD_ONLY);
         while (scroll.next()) {
             Client client = (Client) scroll.get(0);
