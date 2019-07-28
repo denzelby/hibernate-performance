@@ -1,3 +1,4 @@
 <dataset>
     <Client id_client="1" name="Anton" age="20"/>
+    <Account id_account="1" amount="300" currency="USD" id_client="1" />
 </dataset>

@@ -15,7 +15,7 @@ public class SubselectTest extends BaseTest {
     @Test
     public void subSelect() {
         //noinspection unchecked
-        List<Client> clients = getSession().createQuery("select c from Client c " +
+        List<Client> clients = getSession().createQuery("select c from com.jeeconf.hibernate.performancetuning.subselect.entity.Client c " +
                 "where c.age >= :age")
                 .setParameter("age", 18)
                 .list();
